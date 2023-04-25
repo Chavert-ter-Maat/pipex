@@ -46,6 +46,7 @@ SRC =	ft_atoi.c \
 		ft_strlen.c \
 		ft_strmapi.c \
 		ft_strncmp.c \
+		ft_strnstr.c \
 		ft_strrchr.c \
 		ft_strtrim.c \
 		ft_substr.c \
@@ -81,7 +82,7 @@ comp: all bonus clean
 
 $(NAME): $(OBJ)
 	$(AR) $(NAME) $(OBJ)
-	@echo "$(GREEN) ft_libft compiled $(DEF_COLOR)"
+	@echo "$(GREEN)ft_libft compiled $(DEF_COLOR)"
 
 clean:
 	$(RM) $(OBJ) $(OBJ_BONUS)

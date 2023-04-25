@@ -1,0 +1,14 @@
+Certainly! execve and access are two C library functions that are used in Unix-like operating systems for different purposes.
+
+execve Function:
+The execve function is used to execute a new program in the current process. It replaces the current process image with a new program image. The syntax for execve function is as follows:
+c
+Copy code
+int execve(const char *filename, char *const argv[], char *const envp[]);
+where:
+
+filename: A string containing the path to the executable file to be executed.
+argv: An array of strings representing the command-line arguments to be passed to the new program. The first element of this array (argv[0]) should be the name of the program being executed.
+envp: An array of strings representing the environment variables to be passed to the new program. This array is terminated by a NULL pointer.
+The execve function loads the new program into the current process's memory and starts executing it from the main function. If the execution is successful, it does not return,
+ as the entire process image has been replaced with the new program. If there is an error, execve returns -1, and the error code can be obtained from the errno variable.

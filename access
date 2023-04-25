@@ -1,0 +1,20 @@
+access Function:
+The access function is used to check the accessibility of a file or directory in terms of the permission settings. It can be used to determine if a file or directory can be read,
+ written, or executed by the current process. The syntax for access function is as follows:
+c
+Copy code
+int access(const char *pathname, int mode);
+where:
+
+pathname: A string containing the path to the file or directory to be checked.
+mode: An integer representing the desired access mode, which can be a combination of the following constants:
+R_OK: Check if the file or directory is readable.
+W_OK: Check if the file or directory is writable.
+X_OK: Check if the file or directory is executable.
+F_OK: Check if the file or directory exists.
+The access function returns 0 if the file or directory is accessible according to the specified access mode, and -1 if there is an error or if the file or directory is not accessible.
+ The error code can be obtained from the errno variable.	
+
+Note: It's important to be cautious when using access function for security-related checks, as the permission status may change between the time access function is called and the actual file operation is performed.
+ It's recommended to use appropriate file I/O 
+functions with proper error handling for actual file operations.

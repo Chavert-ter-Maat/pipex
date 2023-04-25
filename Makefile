@@ -6,7 +6,7 @@
 #    By: cter-maa <cter-maa@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/04/20 11:46:11 by cter-maa      #+#    #+#                  #
-#    Updated: 2023/04/24 16:37:12 by cter-maa      ########   odam.nl          #
+#    Updated: 2023/04/25 17:23:13 by cter-maa      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,9 @@ LIBFT = ./libft/libft.a
 
 # SOURCES
 SRC =	SRC/main.c \
-		SRC/run_command.c \
+		SRC/commands.c \
 		SRC/initialize.c \
+		SRC/utils.c \
 			
 # OBJECTS
 OBJ			= $(SRC:.c=.o)
@@ -48,7 +49,7 @@ WHITE 		= \033[0;97m
 
 # RULES
 $(NAME): $(OBJ)
-# 	$(MAKE) -C ./libft
+#	$(MAKE) -C ./libft
 #	$(MAKE) -C ./libft/ft_printf
 	$(CC) $(OBJ) $(INCLUDES) $(LIBFT) $(PRINTF) $(CFLAGS) -o $(NAME)
 	@echo "$(GREEN)pipex compiled $(DEF_COLOR)"
@@ -56,7 +57,7 @@ $(NAME): $(OBJ)
 # RECIPES
 all: $(NAME)
 
-make comp: re all clean
+make comp: all clean
 	@echo "$(GREEN)run that shit! $(DEF_COLOR)"
 	 
 debug:
@@ -66,18 +67,16 @@ rebug: fclean
 	$(MAKE) debug
 	
 clean:
+	$(MAKE) clean -C ./libft
+	$(MAKE) clean -C ./libft/ft_printf	
 	$(RM) $(OBJ)
-#	$(MAKE) clean -C ./libft
-#	$(MAKE) clean -C ./libft/ft_printf
-	@echo "$(YELLOW)pipex object files cleaned $(DEF_COLOR)"
+	@echo "$(YELLOW)pipex object files are removed $(DEF_COLOR)"
 
-fclean: 
-	$(RM) $(OBJ)
-	@echo "$(YELLOW)pipex object files cleaned $(DEF_COLOR)"
+fclean: clean
+	# $(MAKE) fclean -C ./libft
+	# $(MAKE) fclean -C ./libft/ft_printf
 	$(RM) $(NAME)
-	@echo "$(RED)pipex object files and executable are cleaned $(DEF_COLOR)"
-#	$(MAKE) fclean -C ./libft
-#	$(MAKE) fclean -C ./libft/ft_printf
-
+	@echo "$(YELLOW)pipex executable is removed $(DEF_COLOR)"
+	
 re: fclean all
-	$(RM) $(OBJ)
+
