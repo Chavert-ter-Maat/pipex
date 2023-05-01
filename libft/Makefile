@@ -54,8 +54,7 @@ SRC =	ft_atoi.c \
 		ft_toupper.c \
 
 #SOURCES BONUS
-BONUS		=	ft_lstnew.c \
-				ft_lstadd_front.c \
+BONUS		=	ft_lstadd_front.c \
 				ft_lstsize.c \
 				ft_lstlast.c \
 				ft_lstadd_back.c \
@@ -93,7 +92,3 @@ fclean: clean
 	@echo "$(RED)ft_printf object files & folders are cleaned $(DEF_COLOR)"
 
 re: fclean $(NAME)
-
-bonus: $(OBJ_BONUS)
-	$(AR) $(NAME) $(OBJ_BONUS)
-	@echo "$(GREEN)ft_libft_bonus compiled $(DEF_COLOR)"

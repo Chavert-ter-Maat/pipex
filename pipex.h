@@ -6,7 +6,7 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/20 11:47:33 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/04/25 16:26:19 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/01 14:43:05 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@
 # include "./libft/ft_printf/ft_printf.h"
 
 // defines
+# define PIPE_WRITE_END	1
+# define PIPE_READ_END	0
+# define FAILED		-1
+
+
 
 // structures
 typedef struct s_pipex
@@ -29,6 +34,11 @@ typedef struct s_pipex
 	char	**argv;
 	char	**envp;
 	int		argc;
+	char	*infile;
+	char	*outfile;
+	char	**cmd1;
+	char	**cmd2;
+	int		pipe_fd[2];
 	char	*path;
 }	t_pipex;
 
@@ -37,10 +47,8 @@ void	run_command(t_pipex *generate);
 
 // initialize
 void	initialize(t_pipex *generate, int argc, char **argv, char **envp);
-void	print_envp(t_pipex *generate);
 
 // utils
 void	error(const char *input);
-
 
 #endif

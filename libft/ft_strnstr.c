@@ -6,7 +6,7 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/14 17:42:18 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/04/25 14:04:25 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/04/30 14:08:53 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	{
 		index2 = 0;
 		while (haystack[index1 + index2] == needle[index2]
-			&& haystack[index1 + index2] && needle[index2]
-			&& index1 + index2 < len)
+			&& haystack[index1 + index2]
+			&& needle[index2] && index1 + index2 < len)
 		{		
 			index2++;
 			if (lenght_needle == index2)
@@ -45,5 +45,5 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 		}
 		index1++;
 	}
-	return (NULL);
+	return (0);
 }

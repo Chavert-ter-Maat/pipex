@@ -6,7 +6,7 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/02 11:57:54 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/02/01 15:34:32 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/01 10:08:41 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,26 @@
 
 #include "libft.h"
 
-static int	count_words(char const *string, char separator_char)
+static int	count_words(char const *string, char separator)
 {
 	int	count;
 
 	count = 0;
 	while (*string)
 	{
-		if (*string != separator_char)
+		if (*string != separator)
 		{
-			while (*string != separator_char && *string)
+			while (*string != separator && *string)
 				string++;
 			count++;
 		}
-		if (*string == separator_char)
+		else if (*string == separator && *string)
 			string++;
 	}
 	return (count);
 }
 
-static int	ft_free(char **split, int index)
+static int	free_split(char **split, int index)
 {
 	while (index-- > 0)
 		free(split[index]);
@@ -44,7 +44,7 @@ static int	ft_free(char **split, int index)
 	return (1);
 }
 
-static int	word(const char *string, char separator_char, char **split)
+static int	add_words_split(const char *string, char separator, char **split)
 {
 	size_t	start;
 	size_t	end;
@@ -55,18 +55,18 @@ static int	word(const char *string, char separator_char, char **split)
 	index = 0;
 	while (string[start])
 	{
-		if (string[start] != separator_char)
+		if (string[start] != separator)
 		{
 			end = start;
-			while (string[end] != separator_char && string[end])
+			while (string[end] != separator && string[end])
 				end++;
 			split[index] = ft_substr(string, start, (end - start));
 			if (!split[index])
-				return (ft_free(split, index));
+				return (free_split(split, index));
 			index++;
 			start = end;
 		}
-		if (string[start] == separator_char && string[start])
+		if (string[start] == separator && string[start])
 			start++;
 	}
 	split[index] = NULL;
@@ -77,10 +77,12 @@ char	**ft_split(char const *s, char c)
 {
 	char	**split;
 
-	split = malloc((count_words(s, c) + 1) * sizeof(char *));
-	if (!s || !split)
+	if (!s)
 		return (NULL);
-	if (word(s, c, split) == 1)
+	split = malloc((count_words(s, c) + 1) * sizeof(char *));
+	if (!split)
+		return (NULL);
+	if (add_words_split(s, c, split) == 1)
 		return (NULL);
 	return (split);
 }

@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strdup.c                                        :+:    :+:            */
+/*   ft_lstsize.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/14 15:05:02 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/04/30 14:49:40 by cter-maa      ########   odam.nl         */
+/*   Created: 2023/02/02 13:18:45 by cter-maa      #+#    #+#                 */
+/*   Updated: 2023/05/01 09:53:15 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* ************************************************************************** */
-/* ft_strdup allocates sufficient memory for a copy of the string s1,		  */
-/* and returns a pointer to it.												  */
+/* Counts the number of nodes in a list.									  */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+int	ft_lstsize(t_list *lst)
 {
-	size_t	index;
-	char	*new_string;
+	int		amount;
 
-	index = 0;
-	new_string = malloc (sizeof(char) * ft_strlen(s1) + 1);
-	if (!new_string)
-		return (NULL);
-	while (s1[index])
+	amount = 0;
+	while (lst)
 	{
-		new_string[index] = s1[index];
-		index++;
+		amount++;
+		lst = lst->next;
 	}
-		new_string[index] = '\0';
-	return (new_string);
-	free (new_string);
+	return (amount);
 }

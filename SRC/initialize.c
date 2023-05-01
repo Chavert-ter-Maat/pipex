@@ -6,7 +6,7 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/24 15:31:50 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/04/25 17:16:08 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/01 16:33:14 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,8 @@ void	initialize(t_pipex *generate, int argc, char **argv, char **envp)
 	generate->argc = argc;
 	generate->argv = argv;
 	generate->envp = envp;
+	// generate->infile = argv[1];
+	// generate->cmd1 = argv[2];
+	// generate->cmd1 = argv[3];
+	// generate->outfile = argv[4];
 }
-
-// void	print_envp(t_pipex *generate)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	while(generate->envp[i])
-// 	{
-// 		ft_printf("%s\n", generate->envp[i]);
-// 		i++;
-// 	}
-// }
