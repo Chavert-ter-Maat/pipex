@@ -6,7 +6,7 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/20 11:47:33 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/01 14:43:05 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/02 16:34:24 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 // defines
 # define PIPE_WRITE_END	1
 # define PIPE_READ_END	0
-# define FAILED		-1
+# define SUCCES			0
+# define FAILED			-1
 
 
 
@@ -36,14 +37,17 @@ typedef struct s_pipex
 	int		argc;
 	char	*infile;
 	char	*outfile;
+	char	*argv2;
+	char	*argv3;
 	char	**cmd1;
 	char	**cmd2;
+	char	**split_path;
 	int		pipe_fd[2];
 	char	*path;
 }	t_pipex;
 
 // commands
-void	run_command(t_pipex *generate);
+void	run_command(t_pipex *generate, char *argv, char **cmd);
 
 // initialize
 void	initialize(t_pipex *generate, int argc, char **argv, char **envp);
