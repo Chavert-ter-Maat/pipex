@@ -6,7 +6,7 @@
 #    By: cter-maa <cter-maa@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/04/20 11:46:11 by cter-maa      #+#    #+#                  #
-#    Updated: 2023/04/25 17:23:13 by cter-maa      ########   odam.nl          #
+#    Updated: 2023/05/04 13:53:46 by cter-maa      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,10 @@ PRINTF = ./libft/ft_printf/libftprintf.a
 LIBFT = ./libft/libft.a
 
 # SOURCES
-SRC =	SRC/main.c \
-		SRC/commands.c \
-		SRC/initialize.c \
-		SRC/utils.c \
+SRC = 	SRC/execute_commands.c \
+		SRC/error_handling.c \
+		SRC/input_parsing.c \
+		SRC/main.c \
 			
 # OBJECTS
 OBJ			= $(SRC:.c=.o)
@@ -49,8 +49,8 @@ WHITE 		= \033[0;97m
 
 # RULES
 $(NAME): $(OBJ)
-#	$(MAKE) -C ./libft
-#	$(MAKE) -C ./libft/ft_printf
+	$(MAKE) -C ./libft
+	$(MAKE) -C ./libft/ft_printf
 	$(CC) $(OBJ) $(INCLUDES) $(LIBFT) $(PRINTF) $(CFLAGS) -o $(NAME)
 	@echo "$(GREEN)pipex compiled $(DEF_COLOR)"
 

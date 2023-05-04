@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   commands.c                                         :+:    :+:            */
+/*   execute_commands.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/24 14:09:17 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/02 16:59:06 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/04 14:59:48 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-static void	run_access_path(t_pipex *generate, char *argv, char **cmd)
+char	*get_access_path(t_pipex *generate, char *argv)
 {
 	size_t	index_path;
 	size_t	path_length;
@@ -34,34 +34,15 @@ static void	run_access_path(t_pipex *generate, char *argv, char **cmd)
 			break ;
 		index_path++;
 	}
-	if (execve(new_path, cmd, generate->envp) == FAILED)
-		error("execve failed");
-}
-
-static char	*get_path(t_pipex *generate)
-{
-	char	*path;
-	size_t	index;
-
-	index = 0;	
-	while (generate->envp[index])
-		{
-			path = ft_strnstr(generate->envp[index], "PATH=", 5);
-			if (path)
-				break ;
-			index++;
-		}
-	if (!path)
-		error("no path in envp found");
-	return (&path[5]);
+	return (new_path);
 }
 
 void	run_command(t_pipex *generate, char *argv, char **cmd)
 {
-	generate->path = get_path(generate);
-	generate->split_path = ft_split(generate->path, ':');
-	if (!generate->split_path)
-		error("split_path failed");
-	run_access_path(generate, argv, cmd);
-	free(generate->split_path);
+	char	*new_path;
+	
+	new_path = get_access_path(generate, argv);
+	if (execve(new_path, cmd, generate->envp) == FAILED)
+		error("execve failed");
+	// free(generate->split_path);
 }
