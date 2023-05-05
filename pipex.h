@@ -6,7 +6,7 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/20 11:47:33 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/04 13:18:03 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/05 16:03:02 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@
 # define SUCCES			0
 # define FAILED			-1
 
-
-
 // structures
 typedef struct s_pipex
 {
@@ -44,13 +42,15 @@ typedef struct s_pipex
 	char	**split_path;
 	int		pipe_fd[2];
 	char	*path;
+	pid_t	child_pid_1;
+	pid_t	child_pid_2;
 }	t_pipex;
 
 // commands
 void	run_command(t_pipex *generate, char *argv, char **cmd);
 
 // initialize
-void	initialize(t_pipex *generate, int argc, char **argv, char **envp);
+void	input_parsing(t_pipex *generate, int argc, char **argv, char **envp);
 
 // utils
 void	error(const char *input);
