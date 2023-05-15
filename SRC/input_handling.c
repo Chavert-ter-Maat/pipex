@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   input_parsing.c                                    :+:    :+:            */
+/*   input_handling.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/24 15:31:50 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/05 16:04:28 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/15 13:47:31 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-void	input_parsing(t_pipex *generate, int argc, char **argv, char **envp)
+void	input_handling(t_pipex *generate, int argc, char **argv, char **envp)
 {
 	if (argc != 5)
-		error("input argument error\n");
+		error_exit("input argument error\n");
 	ft_bzero(generate, sizeof(*generate));
 	generate->argc = argc;
 	generate->argv = argv;
@@ -26,8 +26,8 @@ void	input_parsing(t_pipex *generate, int argc, char **argv, char **envp)
 	generate->outfile = argv[4];
 	generate->cmd1 = ft_split(generate->argv2, ' ');
 	if (!generate->cmd1)
-		error("split cmd1 failed\n");
+		error_exit("split cmd1 failed\n");
 	generate->cmd2 = ft_split(generate->argv3, ' ');
 	if (!generate->cmd2)
-		error("split cmd2 failed\n");
+		error_exit("split cmd2 failed\n");
 }

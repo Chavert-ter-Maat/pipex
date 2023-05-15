@@ -6,7 +6,7 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/20 11:47:33 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/05 16:03:02 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/15 15:43:56 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 
 // headers
 # include <stdio.h>
+# include <errno.h>
+# include <fcntl.h>
 # include <unistd.h>
 # include <sys/wait.h>
-# include <fcntl.h>
 # include "./libft/libft.h"
 # include "./libft/ft_printf/ft_printf.h"
 
@@ -25,6 +26,7 @@
 # define PIPE_WRITE_END	1
 # define PIPE_READ_END	0
 # define SUCCES			0
+# define NOT_FOUND		0
 # define FAILED			-1
 
 // structures
@@ -50,9 +52,11 @@ typedef struct s_pipex
 void	run_command(t_pipex *generate, char *argv, char **cmd);
 
 // initialize
-void	input_parsing(t_pipex *generate, int argc, char **argv, char **envp);
+void	input_handling(t_pipex *generate, int argc, char **argv, char **envp);
 
 // utils
-void	error(const char *input);
+void	error_exit(const char *input);
+void	perror_exit(const char *input);
+void	error_access(char *argv);
 
 #endif

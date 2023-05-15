@@ -6,7 +6,7 @@
 #    By: cter-maa <cter-maa@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/04/20 11:46:11 by cter-maa      #+#    #+#                  #
-#    Updated: 2023/05/05 14:04:48 by cter-maa      ########   odam.nl          #
+#    Updated: 2023/05/15 11:12:30 by cter-maa      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ LIBFT = ./libft/libft.a
 # SOURCES
 SRC = 	SRC/execute_commands.c \
 		SRC/error_handling.c \
-		SRC/input_parsing.c \
+		SRC/input_handling.c \
 		SRC/main.c \
 			
 # OBJECTS
