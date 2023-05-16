@@ -6,7 +6,7 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/24 15:31:50 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/15 13:47:31 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/16 14:17:37 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	input_handling(t_pipex *generate, int argc, char **argv, char **envp)
 {
 	if (argc != 5)
-		error_exit("input argument error\n");
+		error_exit(generate, "input argument error\n");
 	ft_bzero(generate, sizeof(*generate));
 	generate->argc = argc;
 	generate->argv = argv;
@@ -26,8 +26,8 @@ void	input_handling(t_pipex *generate, int argc, char **argv, char **envp)
 	generate->outfile = argv[4];
 	generate->cmd1 = ft_split(generate->argv2, ' ');
 	if (!generate->cmd1)
-		error_exit("split cmd1 failed\n");
+		error_exit(generate, "split cmd1 failed\n");
 	generate->cmd2 = ft_split(generate->argv3, ' ');
 	if (!generate->cmd2)
-		error_exit("split cmd2 failed\n");
+		error_exit(generate, "split cmd2 failed\n");
 }

@@ -6,7 +6,7 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/20 11:47:33 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/15 15:43:56 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/16 14:16:27 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_pipex
 	char	**split_path;
 	int		pipe_fd[2];
 	char	*path;
+	char	*access_path;
 	pid_t	child_pid_1;
 	pid_t	child_pid_2;
 }	t_pipex;
@@ -51,12 +52,13 @@ typedef struct s_pipex
 // commands
 void	run_command(t_pipex *generate, char *argv, char **cmd);
 
-// initialize
+// input handling
 void	input_handling(t_pipex *generate, int argc, char **argv, char **envp);
 
-// utils
-void	error_exit(const char *input);
-void	perror_exit(const char *input);
-void	error_access(char *argv);
+// error and exit handling
+void	error_exit(t_pipex *generate, const char *input);
+void	perror_exit(t_pipex *generate, const char *input);
+void	error_access(t_pipex *generate, char *argv);
+void	free_before_exit(t_pipex *generate);
 
 #endif

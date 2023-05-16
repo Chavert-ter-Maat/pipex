@@ -6,7 +6,7 @@
 #    By: cter-maa <cter-maa@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/04/20 11:46:11 by cter-maa      #+#    #+#                  #
-#    Updated: 2023/05/15 11:12:30 by cter-maa      ########   odam.nl          #
+#    Updated: 2023/05/16 13:00:53 by cter-maa      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ LIBFT = ./libft/libft.a
 
 # SOURCES
 SRC = 	SRC/execute_commands.c \
-		SRC/error_handling.c \
+		SRC/error_exit_handling.c \
 		SRC/input_handling.c \
 		SRC/main.c \
 			
@@ -49,9 +49,9 @@ WHITE 		= \033[0;97m
 
 # RULES
 $(NAME): $(OBJ)
-	# $(MAKE) -C ./libft
-	# $(MAKE) -C ./libft/ft_printf
-	$(CC) $(OBJ) $(INCLUDES) $(LIBFT) $(PRINTF) $(CFLAGS) -o $(NAME)
+	$(MAKE) -C ./libft
+	$(MAKE) -C ./libft/ft_printf
+	$(CC) $(CFLAGS) $(OBJ) $(INCLUDES) $(LIBFT) $(PRINTF) -o $(NAME)
 	@echo "$(GREEN)pipex compiled $(DEF_COLOR)"
 
 # RECIPES
@@ -73,8 +73,8 @@ clean:
 	@echo "$(YELLOW)pipex object files are removed $(DEF_COLOR)"
 
 fclean: clean
-	# $(MAKE) fclean -C ./libft
-	# $(MAKE) fclean -C ./libft/ft_printf
+	$(MAKE) fclean -C ./libft
+	$(MAKE) fclean -C ./libft/ft_printf
 	$(RM) $(NAME)
 	@echo "$(YELLOW)pipex executable is removed $(DEF_COLOR)"
 	
