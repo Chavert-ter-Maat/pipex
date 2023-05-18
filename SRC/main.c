@@ -6,7 +6,7 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/24 11:01:03 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/16 14:20:33 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/18 15:26:00 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int	main(int argc, char **argv, char **envp)
 	t_pipex	generate;
 	int		status;
 
-	//atexit(f);
 	input_handling(&generate, argc, argv, envp);
 	generate_pipe_forks(&generate);
 	status = close_pipes(&generate);

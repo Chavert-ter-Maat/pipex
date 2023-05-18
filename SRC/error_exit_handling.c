@@ -6,7 +6,7 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/24 11:01:59 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/16 14:19:41 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/18 15:25:38 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	free_before_exit(t_pipex *generate)
 
 void	error_exit(t_pipex *generate, const char *input)
 {
+	generate = NULL;
 	ft_printf("%s", input);
 	free_before_exit(generate);
 	exit(EXIT_FAILURE);
@@ -45,6 +46,7 @@ void	error_exit(t_pipex *generate, const char *input)
 
 void	perror_exit(t_pipex *generate, const char *input)
 {
+	generate = NULL;
 	ft_putstr_fd("pipex: ", STDERR_FILENO);
 	perror(input);
 	free_before_exit(generate);
@@ -53,6 +55,7 @@ void	perror_exit(t_pipex *generate, const char *input)
 
 void	error_access(t_pipex *generate, char *argv)
 {
+	generate = NULL;
 	ft_putstr_fd("pipex: ", STDERR_FILENO);
 	ft_putstr_fd(argv, STDERR_FILENO);
 	ft_putstr_fd(": ", STDERR_FILENO);

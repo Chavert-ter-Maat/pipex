@@ -6,7 +6,7 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/24 15:31:50 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/16 14:17:37 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/18 15:19:50 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 void	input_handling(t_pipex *generate, int argc, char **argv, char **envp)
 {
 	if (argc != 5)
-		error_exit(generate, "input argument error\n");
+	{
+		ft_printf("input argument error\n");
+		exit(EXIT_FAILURE);
+	}
 	ft_bzero(generate, sizeof(*generate));
 	generate->argc = argc;
 	generate->argv = argv;
