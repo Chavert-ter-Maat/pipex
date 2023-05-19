@@ -6,7 +6,7 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/24 15:31:50 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/18 15:19:50 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/19 10:29:37 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	input_handling(t_pipex *generate, int argc, char **argv, char **envp)
 	generate->argv2 = argv[2];
 	generate->argv3 = argv[3];
 	generate->outfile = argv[4];
+	generate->cmd1 = ft_split(generate->argv2, ' ');
 	generate->cmd1 = ft_split(generate->argv2, ' ');
 	if (!generate->cmd1)
 		error_exit(generate, "split cmd1 failed\n");

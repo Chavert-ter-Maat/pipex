@@ -6,7 +6,7 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/20 11:47:33 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/18 15:20:53 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/19 10:37:46 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ void	input_handling(t_pipex *generate, int argc, char **argv, char **envp);
 void	error_exit(t_pipex *generate, const char *input);
 void	perror_exit(t_pipex *generate, const char *input);
 void	error_access(t_pipex *generate, char *argv);
-// void	free_before_exit(t_pipex *generate);
+void	free_before_exit(t_pipex *generate);
 
 #endif
