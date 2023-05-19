@@ -6,7 +6,7 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/24 14:09:17 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/19 10:42:15 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/19 15:40:20 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	run_no_slash(t_pipex *generate, char *argv, char **cmd)
 	lenght = (ft_strlen(generate->path) + ft_strlen(argv) + 2);
 	generate->access_path = ft_calloc(lenght, sizeof(char));
 	if (!generate->access_path)
-		error_exit(generate, "ft_calloc generate->access_path failed");
+		error_exit(generate, "ft_calloc access_path failed");
 	while (generate->split_path[index])
 	{
 		ft_bzero(generate->access_path, lenght);

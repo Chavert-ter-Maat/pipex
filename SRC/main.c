@@ -6,13 +6,13 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/24 11:01:03 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/18 15:26:00 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/19 16:37:24 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-int	close_pipes(t_pipex *generate)
+static int	close_pipe_and_wait(t_pipex *generate)
 {
 	int	status;
 
@@ -86,6 +86,8 @@ int	main(int argc, char **argv, char **envp)
 
 	input_handling(&generate, argc, argv, envp);
 	generate_pipe_forks(&generate);
-	status = close_pipes(&generate);
+	status = close_pipe_and_wait(&generate);
+	// wait(&status);
+	// free_before_exit(&generate);
 	exit(WEXITSTATUS(status));
 }

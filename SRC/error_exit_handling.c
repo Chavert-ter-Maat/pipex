@@ -6,7 +6,7 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/24 11:01:59 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/19 10:45:45 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/19 16:27:14 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ static void	free_double_array(char **cmd)
 		free(cmd[index]);
 		index++;
 	}
+}
+void	input_error(void)
+{
+		ft_putstr_fd("wrong input: infile cmd1 cmd2 outfile\n", STDERR_FILENO);
+		exit(EXIT_FAILURE);
 }
 
 void	free_before_exit(t_pipex *generate)

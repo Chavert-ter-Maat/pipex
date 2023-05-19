@@ -6,7 +6,7 @@
 #    By: cter-maa <cter-maa@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/04/20 11:46:11 by cter-maa      #+#    #+#                  #
-#    Updated: 2023/05/16 13:00:53 by cter-maa      ########   odam.nl          #
+#    Updated: 2023/05/19 15:15:08 by cter-maa      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,11 @@ CFLAGS 	= -Wall -Wextra -Werror
 ifdef DEBUG
 	CFLAGS += -g
 endif
+
+ifdef FSAN
+	CFLAGS +=-fsanitize=address,undefined
+endif
+
 RM 		= rm -f
 SANITIZE = -fsanitize=address
 
@@ -32,12 +37,12 @@ SRC = 	SRC/execute_commands.c \
 		SRC/error_exit_handling.c \
 		SRC/input_handling.c \
 		SRC/main.c \
-			
+
 # OBJECTS
 OBJ			= $(SRC:.c=.o)
 
 # COLORS
-DEF_COLOR 	= \033[0;39m	
+DEF_COLOR 	= \033[0;39m
 GRAY 		= \033[0;90m
 RED 		= \033[0;91m
 GREEN 		= \033[0;92m
@@ -59,16 +64,20 @@ all: $(NAME)
 
 make comp: all clean
 	@echo "$(GREEN)run that shit! $(DEF_COLOR)"
-	 
+
 debug:
 	$(MAKE) DEBUG=1
 
-rebug: fclean
-	$(MAKE) debug
-	
+rebug: fclean debug
+
+fsan:
+	$(MAKE) DEBUG=1 FSAN=1
+
+resan: fclean fsan
+
 clean:
 	$(MAKE) clean -C ./libft
-	$(MAKE) clean -C ./libft/ft_printf	
+	$(MAKE) clean -C ./libft/ft_printf
 	$(RM) $(OBJ)
 	@echo "$(YELLOW)pipex object files are removed $(DEF_COLOR)"
 
@@ -77,6 +86,5 @@ fclean: clean
 	$(MAKE) fclean -C ./libft/ft_printf
 	$(RM) $(NAME)
 	@echo "$(YELLOW)pipex executable is removed $(DEF_COLOR)"
-	
-re: fclean all
 
+re: fclean all
