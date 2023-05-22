@@ -6,11 +6,13 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/24 14:09:17 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/19 15:40:20 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/22 09:41:21 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
+
+// static void	access_and_execute()
 
 static void	run_no_slash(t_pipex *generate, char *argv, char **cmd)
 {
