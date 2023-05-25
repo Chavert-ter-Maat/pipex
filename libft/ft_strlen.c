@@ -6,7 +6,7 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/08 13:25:48 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/22 10:09:04 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/25 15:37:31 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 size_t	ft_strlen(const char *s)
 {
 	size_t	lenght;
-	char	*string;
+	// char	*string;
 
 	lenght = 0;
-	string = (char *)s;
-	if (s == NULL)
-		return(0);
-	while (string[lenght])
+	// string = (char *)s;
+	// if (s == NULL)
+	// 	return (0);
+	while (s[lenght])
 		lenght++;
 	return (lenght);
 }

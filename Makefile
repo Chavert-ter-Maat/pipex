@@ -6,7 +6,7 @@
 #    By: cter-maa <cter-maa@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/04/20 11:46:11 by cter-maa      #+#    #+#                  #
-#    Updated: 2023/05/19 15:15:08 by cter-maa      ########   odam.nl          #
+#    Updated: 2023/05/25 15:24:03 by cter-maa      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,11 +56,14 @@ WHITE 		= \033[0;97m
 $(NAME): $(OBJ)
 	$(MAKE) -C ./libft
 	$(MAKE) -C ./libft/ft_printf
-	$(CC) $(CFLAGS) $(OBJ) $(INCLUDES) $(LIBFT) $(PRINTF) -o $(NAME)
+	$(CC) $(CFLAGS) $(SANITIZE) $(OBJ) $(INCLUDES) $(LIBFT) $(PRINTF) -o $(NAME)
 	@echo "$(GREEN)pipex compiled $(DEF_COLOR)"
 
 # RECIPES
-all: $(NAME)
+all: submodule $(NAME)
+
+submodule:
+	git submodule update --init --recursive 
 
 make comp: all clean
 	@echo "$(GREEN)run that shit! $(DEF_COLOR)"

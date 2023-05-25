@@ -6,13 +6,13 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/24 11:01:03 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/22 11:20:41 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/25 15:43:30 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-static int	close_pipe_and_wait(t_pipex *generate)
+static int	close_pipe_wait(t_pipex *generate)
 {
 	int	status;
 
@@ -54,9 +54,9 @@ static void	execute_child_1(t_pipex *generate)
 	infile_fd = open(generate->infile, O_RDONLY);
 	if (infile_fd == FAILED)
 		perror_exit(generate, generate->infile);
-	if (dup2(generate->pipe_fd[PIPE_WRITE_END], STDOUT_FILENO) == FAILED)
-		perror_exit(generate, "dup2");
 	if (dup2(infile_fd, STDIN_FILENO) == FAILED)
+		perror_exit(generate, "dup2");
+	if (dup2(generate->pipe_fd[PIPE_WRITE_END], STDOUT_FILENO) == FAILED)
 		perror_exit(generate, "dup2");
 	run_command(generate, generate->argv2, generate->cmd1);
 	if (close(infile_fd) == FAILED)
@@ -79,15 +79,15 @@ static void	generate_pipe_forks(t_pipex *generate)
 		execute_child_2(generate);
 }
 
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	generate;
 	int		status;
 
+
 	input_handling(&generate, argc, argv, envp);
 	generate_pipe_forks(&generate);
-	status = close_pipe_and_wait(&generate);
-	// wait(&status);
-	// free_before_exit(&generate);
+	status = close_pipe_wait(&generate);
 	exit(WEXITSTATUS(status));
 }

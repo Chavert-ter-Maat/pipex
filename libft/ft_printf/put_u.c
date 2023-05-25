@@ -24,11 +24,6 @@ static char	*ft_itoa(unsigned int number)
 	if (number == 0)
 		string[0] = '0';
 	string[string_lenght] = '\0';
-	if (number < 0)
-	{
-		string[0] = '-';
-		number *= -1;
-	}
 	while (number > 0)
 	{
 		string[string_lenght - 1] = (number % 10) + '0';

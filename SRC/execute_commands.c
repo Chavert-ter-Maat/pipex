@@ -6,13 +6,11 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/24 14:09:17 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/22 09:41:21 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/25 15:23:04 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
-
-// static void	access_and_execute()
 
 static void	run_no_slash(t_pipex *generate, char *argv, char **cmd)
 {
@@ -58,6 +56,7 @@ static char	*get_path(t_pipex *generate)
 	return (&path[5]);
 }
 
+//argv!! only now works with second command
 void	run_command(t_pipex *generate, char *argv, char **cmd)
 {
 	generate->path = get_path(generate);
@@ -69,7 +68,7 @@ void	run_command(t_pipex *generate, char *argv, char **cmd)
 	else
 	{
 		if (access(argv, F_OK | X_OK) == FAILED)
-			perror_exit(generate, generate->argv3);
+			perror_exit(generate, generate->argv3); 
 		if (execve(argv, cmd, generate->envp) == FAILED)
 			perror_exit(generate, "execve");
 	}
