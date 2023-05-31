@@ -6,34 +6,22 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/24 15:31:50 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/25 15:45:12 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/31 10:10:28 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-static void	input_error(void)
-{
-	ft_putstr_fd("wrong input: infile cmd1 cmd2 outfile\n", STDERR_FILENO);
-	exit(EXIT_FAILURE);
-}
-
 static void	split_commands(t_pipex *generate)
 {
 	generate->cmd1 = ft_split(generate->argv2, ' ');
 	if (!generate->cmd1)
-		error_exit(generate, "split cmd1 failed\n");
+		error_exit("split cmd1 failed\n");
 	generate->cmd2 = ft_split(generate->argv3, ' ');
 	if (!generate->cmd2)
-		error_exit(generate, "split cmd2 failed\n");
+		error_exit("split cmd2 failed\n");
 }
 
-//struct needs to be zeroed
-void	init_generate(t_pipex *generate)
-{
-	generate->infile = NULL;
-	generate->split_path = NULL;
-}
 void	input_handling(t_pipex *generate, int argc, char **argv, char **envp)
 {
 	if (argc != 5)

@@ -6,36 +6,34 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/24 14:09:17 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/25 15:23:04 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/31 10:11:07 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-static void	run_no_slash(t_pipex *generate, char *argv, char **cmd)
+static char	*run_no_slash(t_pipex *generate, char **cmd)
 {
 	size_t	index;
-	size_t	lenght;
+	char	*tmp_path;
+	char	*cmd_slash;
 
+	if (generate->split_path == NULL)
+		return (cmd[0]);
+	cmd_slash = ft_strjoin("/", cmd[0]);
 	index = 0;
-	lenght = (ft_strlen(generate->path) + ft_strlen(argv) + 2);
-	generate->access_path = ft_calloc(lenght, sizeof(char));
-	if (!generate->access_path)
-		error_exit(generate, "ft_calloc access_path failed");
 	while (generate->split_path[index])
 	{
-		ft_bzero(generate->access_path, lenght);
-		ft_strlcat(generate->access_path, generate->split_path[index], lenght);
-		ft_strlcat(generate->access_path, "/", lenght);
-		ft_strlcat(generate->access_path, cmd[0], lenght);
-		if (access(generate->access_path, F_OK | X_OK) == SUCCES)
+		tmp_path = ft_strjoin(generate->split_path[index], cmd_slash);
+		if (access(tmp_path, F_OK | X_OK) == SUCCES)
 			break ;
+		free(tmp_path);
 		index++;
 	}
-	if (access(generate->access_path, F_OK | X_OK) == FAILED)
-		error_access(generate, argv);
-	if (execve(generate->access_path, cmd, generate->envp) == FAILED)
-		perror_exit(generate, "execve");
+	free(cmd_slash);
+	if (generate->split_path[index] == NULL)
+		return (cmd[0]);
+	return (tmp_path);
 }
 
 static char	*get_path(t_pipex *generate)
@@ -52,24 +50,23 @@ static char	*get_path(t_pipex *generate)
 		index++;
 	}
 	if (!path)
-		error_exit(generate, "no path in envp found\n");
+		return (NULL);
 	return (&path[5]);
 }
 
-//argv!! only now works with second command
-void	run_command(t_pipex *generate, char *argv, char **cmd)
+void	run_command(t_pipex *generate, char **cmd)
 {
+	char	*cmd_path;
+
+	cmd_path = NULL;
 	generate->path = get_path(generate);
 	generate->split_path = ft_split(generate->path, ':');
-	if (!generate->split_path)
-		error_exit(generate, "ft_split split_path failed\n");
-	if (ft_strchr(cmd[0], '/') == NOT_FOUND)
-		run_no_slash(generate, argv, cmd);
-	else
+	if (ft_strncmp(cmd[0], "/", 1) || ft_strncmp(cmd[0], "./", 2))
 	{
-		if (access(argv, F_OK | X_OK) == FAILED)
-			perror_exit(generate, generate->argv3); 
-		if (execve(argv, cmd, generate->envp) == FAILED)
-			perror_exit(generate, "execve");
+		cmd_path = run_no_slash(generate, cmd);
+		if (execve(cmd_path, cmd, generate->envp) == FAILED)
+			perror_exit("execve");
 	}
+	if (execve(cmd[0], cmd, generate->envp) == FAILED)
+		perror_exit("execve");
 }
