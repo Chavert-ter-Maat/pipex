@@ -6,7 +6,7 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/24 11:01:03 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/31 10:13:09 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/31 10:21:43 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	execute_child_2(t_pipex *generate)
 		perror_exit("dup2");
 	if (dup2(generate->pipe_fd[PIPE_READ_END], STDIN_FILENO) == FAILED)
 		perror_exit("dup2");
-	run_command(generate, generate->cmd2);
+	run_command(generate, generate->argv3, generate->cmd2);
 	if (close(fd_outfile) == FAILED)
 		perror_exit("close");
 }
@@ -58,7 +58,7 @@ static void	execute_child_1(t_pipex *generate)
 		perror_exit("dup2");
 	if (dup2(generate->pipe_fd[PIPE_WRITE_END], STDOUT_FILENO) == FAILED)
 		perror_exit("dup2");
-	run_command(generate, generate->cmd1);
+	run_command(generate, generate->argv2, generate->cmd1);
 	if (close(infile_fd) == FAILED)
 		perror_exit("close");
 }

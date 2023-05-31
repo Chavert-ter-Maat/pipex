@@ -6,7 +6,7 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/24 14:09:17 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/31 10:11:07 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/31 10:24:03 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static char	*get_path(t_pipex *generate)
 	return (&path[5]);
 }
 
-void	run_command(t_pipex *generate, char **cmd)
+void	run_command(t_pipex *generate, char *argv, char **cmd)
 {
 	char	*cmd_path;
 
@@ -65,8 +65,8 @@ void	run_command(t_pipex *generate, char **cmd)
 	{
 		cmd_path = run_no_slash(generate, cmd);
 		if (execve(cmd_path, cmd, generate->envp) == FAILED)
-			perror_exit("execve");
+			error_no_command(argv);
 	}
 	if (execve(cmd[0], cmd, generate->envp) == FAILED)
-		perror_exit("execve");
+		error_no_command(argv);
 }

@@ -6,7 +6,7 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/24 11:01:59 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/30 16:25:02 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/05/31 10:33:16 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ void	perror_exit(const char *input)
 	exit(errno);
 }
 
-void	error_access(char *argv)
+void	error_no_command(char *argv)
 {
 	ft_putstr_fd("pipex: ", STDERR_FILENO);
 	ft_putstr_fd(argv, STDERR_FILENO);
 	ft_putstr_fd(": ", STDERR_FILENO);
 	ft_putstr_fd("command not found\n", STDERR_FILENO);
-	exit(0);
+	exit(127);
 }
