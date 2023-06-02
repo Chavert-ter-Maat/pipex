@@ -6,7 +6,7 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/24 14:09:17 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/05/31 10:24:03 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/06/02 13:41:42 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	run_command(t_pipex *generate, char *argv, char **cmd)
 	cmd_path = NULL;
 	generate->path = get_path(generate);
 	generate->split_path = ft_split(generate->path, ':');
-	if (ft_strncmp(cmd[0], "/", 1) || ft_strncmp(cmd[0], "./", 2))
+	if (cmd[0] && (ft_strncmp(cmd[0], "/", 1) || ft_strncmp(cmd[0], "./", 2)))
 	{
 		cmd_path = run_no_slash(generate, cmd);
 		if (execve(cmd_path, cmd, generate->envp) == FAILED)

@@ -6,7 +6,7 @@
 #    By: cter-maa <cter-maa@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/04/20 11:46:11 by cter-maa      #+#    #+#                  #
-#    Updated: 2023/05/30 16:14:07 by cter-maa      ########   odam.nl          #
+#    Updated: 2023/06/01 16:28:18 by cter-maa      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ ifdef FSAN
 endif
 
 RM 		= rm -f
-SANITIZE = -fsanitize=address
+# SANITIZE = -fsanitize=address
 
 # INCLUDES
 INCLUDES	= -I ./libft -I ./libft/ft_printf
@@ -56,7 +56,8 @@ WHITE 		= \033[0;97m
 $(NAME): $(OBJ)
 	$(MAKE) -C ./libft
 	$(MAKE) -C ./libft/ft_printf
-	$(CC) $(CFLAGS) $(SANITIZE) $(OBJ) $(INCLUDES) $(LIBFT) $(PRINTF) -o $(NAME)
+	# $(CC) $(CFLAGS) $(SANITIZE) $(OBJ) $(INCLUDES) $(LIBFT) $(PRINTF) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) $(INCLUDES) $(LIBFT) $(PRINTF) -o $(NAME)
 	@echo "$(GREEN)pipex compiled $(DEF_COLOR)"
 
 # RECIPES
