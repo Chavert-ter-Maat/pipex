@@ -6,13 +6,13 @@
 /*   By: cter-maa <cter-maa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/24 15:31:50 by cter-maa      #+#    #+#                 */
-/*   Updated: 2023/06/01 16:33:47 by cter-maa      ########   odam.nl         */
+/*   Updated: 2023/08/08 11:23:27 by cter-maa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-static void	split_commands(t_pipex *generate)
+static void	split_commands(t_pipex *generate)	
 {
 	generate->cmd1 = ft_split(generate->argv2, ' ');
 	if (!generate->cmd1)
