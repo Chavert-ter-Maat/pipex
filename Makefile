@@ -6,7 +6,7 @@
 #    By: cter-maa <cter-maa@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/04/20 11:46:11 by cter-maa      #+#    #+#                  #
-#    Updated: 2023/08/29 15:24:39 by cter-maa      ########   odam.nl          #
+#    Updated: 2023/08/29 15:36:35 by cter-maa      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,18 +60,16 @@ $(NAME): $(OBJ)
 	@echo "$(GREEN)pipex compiled $(DEF_COLOR)"
 
 # RECIPES
-all: submodule $(NAME)
+all: $(NAME)
 
 submodule:
 		git submodule add git@github.com:Chavert-ter-Maat/libft.git libft; \
 		
-update_submodule:
-		rm -rf ./libft
-		git rm --cached -r libft
+submodule_update:
 		git submodule update --remote --merge libft; \
 
-remove_submodule:
-		git rm --cached -r libft
+make comp: all clean
+	@echo "$(GREEN)run that shit! $(DEF_COLOR)"
 
 debug:
 	$(MAKE) DEBUG=1
